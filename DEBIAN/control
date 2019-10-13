@@ -1,0 +1,10 @@
+Package: big-lxqt-decoration
+Version: 1.0.0-1big1
+Depends: bigbashview
+Architecture: all
+Maintainer: Elton Fabricio <www.biglinux.com.br>
+Section: admin
+Priority: optional
+Installed-Size:60
+Description: Change window border decoration in LXQT
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bigbashview index.sh.htm -s 760x350 -i favicon.ico

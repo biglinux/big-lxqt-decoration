@@ -1,0 +1,97 @@
+#!/bin/bash
+
+#Translation
+export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAIN=biglinux-lxqt
+
+# Don't group windows
+xprop -id "$(xprop -root '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)" -f WM_CLASS 8s -set WM_CLASS "$$"
+
+
+# Import BigControlCenter base modules / Importa os módulos básicos do BigControlCenter
+# That's include jquery and materialize / Isso inclui o jquery e o materialize
+# http://materializecss.com/
+. /usr/share/bigbashview/bcc/shell/base.sh
+
+#Title/Description variables
+bcc_title="BigLinux LXQt Decorações"
+bcc_description=$"Alternar as decorações do LXQt"
+# To disable logo use: bcc_logo="no"
+bcc_logo="logo.png"
+
+# About variables
+# To disable about use: bcc_about="no"
+bcc_about="yes"
+bcc_about_license=$"GPL v2 or greater"
+bcc_about_by=$"Bruno Gonçalves"
+bcc_about_release_date=$"15/07/2017"
+bcc_about_url_code=$"https://github.com/biglinux"
+bcc_about_url_project=$"https://www.biglinux.com.br"
+
+# Print header in screen
+bcc_header
+
+
+###############
+# Start Content
+
+WM=$(cat $HOME/.config/lxqt/session.conf | grep window_manager | awk -F'=' '{print $2}')
+if [ "$WM" == "openbox" ];then
+	check='checked'
+elif [ "$WM" == "compiz" ];then
+	check1='checked'
+else
+	check2='checked'
+fi
+
+echo '<div class="row">'
+
+echo '<b>'
+  echo $"As alterações serão aplicadas no gerenciador de janelas, para que funcione adequadamente, após alternar, é recomendado fechar a sessão e fazer login novamente no sistema:" '<br><br><br>'
+echo '</b>'
+
+echo "
+      <button onclick=\"_run('./lxqt-openbox.sh')\" id=\"dark\" $check 
+              class=\"waves-effect waves-light btn blue-grey lighten-1 tooltipped\" data-position=\"bottom\" 
+              data-tooltip=\"" $"Openbox, o mais leve, mas com menos efeitos." "\"/>"
+echo $"LXQt Lite (Openbox)" '</button>'
+
+echo "
+      <button onclick=\"_run('./lxqt-kwin.sh')\" id=\"dark\" $check 
+              class=\"waves-effect waves-light btn blue-grey lighten-1 tooltipped\" data-position=\"bottom\" 
+              data-tooltip=\"" $"kwin é o mais equilibrado, poucos efeitos, mas muito bom de utilizar." "\"/>"
+echo $"LXQt Clássico (Kwin)" '</button>'
+
+echo "
+      <button onclick=\"_run('./lxqt-compiz.sh')\" id=\"dark\" $check 
+              class=\"waves-effect waves-light btn blue-grey lighten-1 tooltipped\" data-position=\"bottom\" 
+              data-tooltip=\"" $"Compiz, a maior quantidade de efeitos, mas eventualmente pode gerar atrasos no sistema." "\"/>"
+echo $"LXQt Moderno (Compiz)" '</button>' 
+
+
+cat << EOF
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>
+EOF
+
+
+echo '</div>'
+
+###################
+# Close content div
+echo '</div>'
+
+##############
+# Start footer
+echo '<div id="bcc_footer">'
+      echo '<div id="bcc_footer_right">'
+        echo '<a href="/usr/share/bigbashview/close.sh" class="waves-effect waves-light btn blue-grey lighten-1"><img src=cancel.png>'$"Sair"'</a>'
+      echo '</div>'
+echo '</div>'
+
+#########
+# The end
+echo '</body>'
