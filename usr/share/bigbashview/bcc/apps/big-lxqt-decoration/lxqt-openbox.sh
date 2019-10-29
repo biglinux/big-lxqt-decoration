@@ -13,7 +13,7 @@ if [ "$XDG_CURRENT_DESKTOP" = "LXQt" ]; then
 	    kdialog --attach="$windowID" --msgbox $"Openbox já Aplicado!"
 	    exit
 	else
-	    sed -i '/Hidden=true/d' $HOME/.config/autostart/lxqt-compton.desktop
+	    rm $HOME/.config/autostart/lxqt-compton.desktop
 	    if [ "$(ps -C kwin_x11 | tail -n1 | grep kwin_x11)" != "" ]; then
 	    	sed -i 's|window_manager=kwin_x11|window_manager=openbox|g' $HOME/.config/lxqt/session.conf
 	    	killall kwin_x11
@@ -35,7 +35,7 @@ if [ "$XDG_CURRENT_DESKTOP" = "LXQt" ]; then
 		exit
 	fi	
 else
-	sed -i '/Hidden=true/d' $HOME/.config/autostart/lxqt-compton.desktop
+	rm $HOME/.config/autostart/lxqt-compton.desktop
 	sed -i 's|window_manager=.*|window_manager=openbox|g' $HOME/.config/lxqt/session.conf
 	kdialog --attach="$windowID" --msgbox $"Você está no KDE Plasma! Faça o login no LXQt para ver a alteração."
 	exit
