@@ -13,7 +13,7 @@ if [ "$XDG_CURRENT_DESKTOP" = "LXQt" ]; then
         kdialog --attach="$windowID" --msgbox $"Compiz já Aplicado!"
         exit
 	else
-
+		cp /etc/xdg/autostart/lxqt-compton.desktop $HOME/.config/autostart
 	    echo "Hidden=true" >> $HOME/.config/autostart/lxqt-compton.desktop
 	    if [ "$(ps -C kwin_x11 | tail -n1 | grep kwin_x11)" != "" ]; then
 	    	sed -i 's|window_manager=kwin_x11|window_manager=compiz|g' $HOME/.config/lxqt/session.conf
@@ -35,6 +35,7 @@ if [ "$XDG_CURRENT_DESKTOP" = "LXQt" ]; then
 		exit	
 	fi
 else
+	cp /etc/xdg/autostart/lxqt-compton.desktop $HOME/.config/autostart
 	echo "Hidden=true" >> $HOME/.config/autostart/lxqt-compton.desktop
 	sed -i 's|window_manager=.*|window_manager=kwin_x11|g' $HOME/.config/lxqt/session.conf
 	kdialog --attach="$windowID" --msgbox $"Você está no KDE Plasma! Faça o login no LXQt para ver a alteração."
