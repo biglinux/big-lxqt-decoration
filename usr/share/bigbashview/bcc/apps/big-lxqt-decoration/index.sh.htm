@@ -35,15 +35,6 @@ bcc_header
 ###############
 # Start Content
 
-WM=$(cat $HOME/.config/lxqt/session.conf | grep window_manager | awk -F'=' '{print $2}')
-if [ "$WM" == "openbox" ];then
-	check='checked'
-elif [ "$WM" == "compiz" ];then
-	check1='checked'
-else
-	check2='checked'
-fi
-
 echo '<div class="row">'
 
 echo '<b>'
@@ -51,19 +42,19 @@ echo '<b>'
 echo '</b>'
 
 echo "
-      <button onclick=\"_run('./lxqt-openbox.sh')\" id=\"dark\" $check 
+      <button onclick=\"_run('./lxqt-openbox.sh')\"
               class=\"waves-effect waves-light btn blue-grey lighten-1 tooltipped\" data-position=\"bottom\" 
               data-tooltip=\"" $"Openbox, o mais leve, mas com menos efeitos." "\"/>"
 echo $"LXQt Lite (Openbox)" '</button>'
 
 echo "
-      <button onclick=\"_run('./lxqt-kwin.sh')\" id=\"dark\" $check 
+      <button onclick=\"_run('./lxqt-kwin.sh')\"
               class=\"waves-effect waves-light btn blue-grey lighten-1 tooltipped\" data-position=\"bottom\" 
               data-tooltip=\"" $"kwin é o mais equilibrado, poucos efeitos, mas muito bom de utilizar." "\"/>"
 echo $"LXQt Clássico (Kwin)" '</button>'
 
 echo "
-      <button onclick=\"_run('./lxqt-compiz.sh')\" id=\"dark\" $check 
+      <button onclick=\"_run('./lxqt-compiz.sh')\"
               class=\"waves-effect waves-light btn blue-grey lighten-1 tooltipped\" data-position=\"bottom\" 
               data-tooltip=\"" $"Compiz, a maior quantidade de efeitos, mas eventualmente pode gerar atrasos no sistema." "\"/>"
 echo $"LXQt Moderno (Compiz)" '</button>' 
