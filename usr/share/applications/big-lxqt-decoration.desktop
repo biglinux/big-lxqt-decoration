@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=System;
 Exec=big-lxqt-decoration
-Icon=/usr/share/bigbashview/bcc/apps/big-lxqt-decoration/logo.png
+Icon=/usr/share/bigbashview/bcc/apps/big-lxqt-decoration/decoration.png
 Name[pt_BR]=BigLinux LXQt Decorações
 Name=BigLinux LXQt Decoration
 StartupNotify=true
